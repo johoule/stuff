@@ -1,0 +1,135 @@
+CP1 - Unit 7                            Names ________________________________
+File IO Quiz
+
+You can use any references you want for this quiz including code you have written. 
+You may also test code in IDLE. Work in groups of up to three students. This is a
+20-point minor assessment.
+
+1. What import statement is needed to read and write files in Python?
+
+    a. import file
+    b. import io
+    c. import file_io
+    d. no imports are needed
+	
+2. Consider a game where map data is stored as plain text. Which of the
+   following statements would create an open file object f referencing a
+   data file called "map_data.txt"?
+
+    a. f = open('map_data.txt', 'r')
+    b. open.f("map_data.txt", 'r')
+    c. f = "map_data.txt".open('r')
+    d. set f to ("map_data.txt").open() as 'r'
+	
+3. Modes for opening files include 'w', 'r', 'r+', and 'a'. Of these, which
+   allow for reading of the files contents? Check all that apply.
+
+    a. [ ] w		b. [ ] r		c. [ ] r+		d. [ ] a
+	
+4. Modes for opening files include 'w', 'r', 'r+', and 'a'. Of these, which
+   allow for writing to the file? Check all that apply.
+
+    a. [ ] w		b. [ ] r		c. [ ] r+		d. [ ] a
+
+	
+5. It is possible to open a file without specifing a mode. Which mode is
+   used by default when no mode is specified?
+
+    a. w		b. r		c. r+		c. a
+	
+6. Consider opening a file called 'preferences.txt' in mode 'w', which of
+   the following are true? Check all that apply.
+
+    [ ] a. If the file 'preferences.txt' does not exist, a runtime error will
+           result causing the program to crash.
+    [ ] b. If the file 'preferences.txt' does not exist, a file with that name
+           will be created.
+    [ ] c. If the file 'preferences.txt' already exists, then data written to
+           the file will overwrite previously saved data.
+    [ ] d. If the file 'preferences.txt' already exists, then data written to
+           the file will be appended to the end of previously saved data.	
+		
+		
+7. Which statement will store the contents of the map file opened above into
+   a string variable m?
+
+    a. m = read('f')
+    b. m = read(f)
+    c. m = f.read()
+    d. m = import(f)
+
+8. Consider another multiple-line file listing player data with each piece of
+   data on a separate line. (Perhaps name, level, health, location, etc.)
+   Assume in the program it is desired to read each line into a List. Which
+   code block will correctly read the data? 
+
+    a. with file('player_data.txt') as f:
+           data = f.read().splitlines()
+
+    b. with open('player_data.txt') as f:
+           data = f.read().split()
+
+    c. with open('player_data.txt') as f:
+           data = f.read().splitlines()
+
+    d. with file('player_data.txt') as f:
+           data = f.readlines()
+
+9. How is a newline character represented in plaintext?
+
+    a. /n
+    b. \n
+    c. \l
+    d. /l
+
+10. Which statement correctly closes an open file object f?
+
+    a. close(f)
+    b. f.close
+    c. f.close()
+    d. close('f')
+
+11. Files opened using 'with' are automatically closed, so no close statement
+    is required.
+
+    a. True
+    b. False
+
+
+	
+	
+	
+	
+	
+	
+Copy the files 'io_quiz.py' and 'scrabble_list.txt' fromt he common. scrabble_list.txt
+contains a list of all valid words in the game of Scrabble. The file is too long to inspect 
+visually, so you'll need to write a program to process the data to answer some of 
+the following questions.
+
+12. Write a block of code that opens the file and stores each line as an item
+    in a List called words.
+
+13. Write a statement that prints the total number of elements in words.
+
+14. Write statement that prints the first 10 elements in words.
+
+
+Problems 15 & 16 are 3 points each. You can get partial credit for non-working
+code, so print your code even if you cannot find the answers to these questions.
+
+15. How many Scrabble words do not contain the letters 'e'?
+
+    Hint: You'll need to use a for loop to check each element in words. Each
+	      time you find a word without an 'e', increase a count variable.
+	
+	
+16. Create a new file with only words that both begin and end with the
+    same letter. Be sure that each word appears on a new line in your text
+	file.
+
+
+Print the code you wrote to answer questions 12-16 and staple it to the back
+of this quiz. Use comments (#12, #13, ...) to identify which code block is
+used to answer each question. Also print the first page of the text file you
+created to answer #16.

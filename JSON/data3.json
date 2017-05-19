@@ -1,0 +1,32 @@
+[
+    {
+        "lang": "spanish", 
+        "one": "uno", 
+        "two": "dos",
+        "three": "tres"
+    }, 
+    {
+        "lang": "french", 
+        "one": "un", 
+        "two": "deux",
+        "three": "trios"
+    }, 
+    {
+        "lang": "latin", 
+        "one": "unus", 
+        "two": "duo",
+        "three": "tres" 
+    }, 
+    {
+        "lang": "german", 
+        "one": "eins", 
+        "two": "swei",
+        "three": "drei"
+    }, 
+    {
+        "lang": "italian", 
+        "one": "uno", 
+        "two": "due",
+        "three": "tre"
+    }
+]

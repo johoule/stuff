@@ -1,0 +1,47 @@
+Marvel Superheroes
+Spider-Man
+Captain Marvel
+Hulk
+Thor
+Iron Man
+Luke Cage
+Black Widow
+Daredevil
+Captain America
+Wolverine
+Black Panther
+Falcon
+Hank Pym
+Hawkeye
+Quicksilver
+Scarlet Witch
+Vision
+Wasp
+Wonder Man
+Drax
+Gamora
+Groot
+Rocket Raccoon
+Star-Lord
+Angel
+Beast
+Colossus
+Cyclops
+Emma Frost
+Gambit
+Iceman
+Jean Grey
+Jubilee
+Kitty Pryde
+Magik
+Nightcrawler
+Northstar
+Psylocke
+Rogue
+Storm
+Professor X
+Human Torch
+Invisible Woman
+Thing
+Mr. Fantastic
+
