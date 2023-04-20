@@ -88,6 +88,24 @@ def lights(a, b):
         pygame.draw.ellipse(screen, light_color, [a+80, 20, 20, 20])
         pygame.draw.line(screen, GRAY, [a, 20], [b, 20], 2)
 
+def netPartTwo(color, StartingXAxis, StartingYAxis, width):
+        endingXAxis = 324
+        endingYAxis = 216
+        for i in range(8):
+            pygame.draw.line(screen, color, [StartingXAxis, StartingYAxis], [endingXAxis, endingYAxis], width)
+            endingXAxis += 2
+            endingYAxis -= 2
+
+
+def netPartThree(color, StartingXAxis, StartingYAxis, width):
+    endingXAxis = 476
+    endingYAxis = 216
+    for i in range(8):
+        pygame.draw.line(screen, color, [StartingXAxis, StartingYAxis], [endingXAxis, endingYAxis], width)
+        endingXAxis -= 2
+        endingYAxis -= 2         
+
+
 # Config
 lights_on = True
 day = True
@@ -283,25 +301,9 @@ while not done:
     pygame.draw.line(screen, WHITE, [470, 140], [456, 200], 1)
     pygame.draw.line(screen, WHITE, [475, 140], [459, 200], 1)
 
-    #net part 2
-    pygame.draw.line(screen, WHITE, [320, 140], [324, 216], 1)
-    pygame.draw.line(screen, WHITE, [320, 140], [326, 214], 1)
-    pygame.draw.line(screen, WHITE, [320, 140], [328, 212], 1)
-    pygame.draw.line(screen, WHITE, [320, 140], [330, 210], 1)
-    pygame.draw.line(screen, WHITE, [320, 140], [332, 208], 1)
-    pygame.draw.line(screen, WHITE, [320, 140], [334, 206], 1)
-    pygame.draw.line(screen, WHITE, [320, 140], [336, 204], 1)
-    pygame.draw.line(screen, WHITE, [320, 140], [338, 202], 1)
+    netPartTwo(WHITE,320,140,1)
+    netPartThree(WHITE,480,140,1)
 
-    #net part 3
-    pygame.draw.line(screen, WHITE, [480, 140], [476, 216], 1)
-    pygame.draw.line(screen, WHITE, [480, 140], [474, 214], 1)
-    pygame.draw.line(screen, WHITE, [480, 140], [472, 212], 1)
-    pygame.draw.line(screen, WHITE, [480, 140], [470, 210], 1)
-    pygame.draw.line(screen, WHITE, [480, 140], [468, 208], 1)
-    pygame.draw.line(screen, WHITE, [480, 140], [466, 206], 1)
-    pygame.draw.line(screen, WHITE, [480, 140], [464, 204], 1)
-    pygame.draw.line(screen, WHITE, [480, 140], [462, 202], 1)
 
     #net part 4
     pygame.draw.line(screen, WHITE, [324, 144], [476, 144], 1)
