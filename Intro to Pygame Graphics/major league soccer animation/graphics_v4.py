@@ -88,18 +88,16 @@ def lights(a, b):
         pygame.draw.ellipse(screen, light_color, [a+80, 20, 20, 20])
         pygame.draw.line(screen, GRAY, [a, 20], [b, 20], 2)
 
-def netPartTwo(color, StartingXAxis, StartingYAxis, width):
-        endingXAxis = 324
-        endingYAxis = 216
+def netPartTwo(color, StartingXAxis, StartingYAxis, endingXAxis, endingYAxis, width):
+        
         for i in range(8):
             pygame.draw.line(screen, color, [StartingXAxis, StartingYAxis], [endingXAxis, endingYAxis], width)
             endingXAxis += 2
             endingYAxis -= 2
 
 
-def netPartThree(color, StartingXAxis, StartingYAxis, width):
-    endingXAxis = 476
-    endingYAxis = 216
+def netPartThree(color, StartingXAxis, StartingYAxis, endingXAxis, endingYAxis, width):
+   
     for i in range(8):
         pygame.draw.line(screen, color, [StartingXAxis, StartingYAxis], [endingXAxis, endingYAxis], width)
         endingXAxis -= 2
@@ -301,8 +299,8 @@ while not done:
     pygame.draw.line(screen, WHITE, [470, 140], [456, 200], 1)
     pygame.draw.line(screen, WHITE, [475, 140], [459, 200], 1)
 
-    netPartTwo(WHITE,320,140,1)
-    netPartThree(WHITE,480,140,1)
+    netPartTwo(WHITE,320,140,324,216, 1)
+    netPartThree(WHITE,480,140,476,216,1)
 
 
     #net part 4
