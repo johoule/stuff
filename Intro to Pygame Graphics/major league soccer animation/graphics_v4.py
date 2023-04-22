@@ -88,22 +88,105 @@ def lights(a, b):
         pygame.draw.ellipse(screen, light_color, [a+80, 20, 20, 20])
         pygame.draw.line(screen, GRAY, [a, 20], [b, 20], 2)
 
-def netPartTwo(color, StartingXAxis, StartingYAxis, endingXAxis, endingYAxis, width):
+def netPartOne(color, width):
+    #net
+    pygame.draw.line(screen, color, [325, 140], [341, 200], width) 
+    pygame.draw.line(screen, color, [330, 140], [344, 200], width)
+    pygame.draw.line(screen, color, [335, 140], [347, 200], width)
+    pygame.draw.line(screen, color, [340, 140], [350, 200], width)
+    pygame.draw.line(screen, color, [345, 140], [353, 200], width)
+    pygame.draw.line(screen, color, [350, 140], [356, 200], width)
+    pygame.draw.line(screen, color, [355, 140], [359, 200], width)
+    pygame.draw.line(screen, color, [360, 140], [362, 200], width)
+    pygame.draw.line(screen, color, [364, 140], [365, 200], width)
+    pygame.draw.line(screen, color, [368, 140], [369, 200], width)
+    pygame.draw.line(screen, color, [372, 140], [373, 200], width)
+    pygame.draw.line(screen, color, [376, 140], [377, 200], width)
+    pygame.draw.line(screen, color, [380, 140], [380, 200], width)
+    pygame.draw.line(screen, color, [384, 140], [384, 200], width)
+    pygame.draw.line(screen, color, [388, 140], [388, 200], width)
+    pygame.draw.line(screen, color, [392, 140], [392, 200], width)
+    pygame.draw.line(screen, color, [396, 140], [396, 200], width)
+    pygame.draw.line(screen, color, [400, 140], [400, 200], width)
+    pygame.draw.line(screen, color, [404, 140], [404, 200], width)
+    pygame.draw.line(screen, color, [408, 140], [408, 200], width)
+    pygame.draw.line(screen, color, [412, 140], [412, 200], width)
+    pygame.draw.line(screen, color, [416, 140], [416, 200], width)
+    pygame.draw.line(screen, color, [420, 140], [420, 200], width)
+    pygame.draw.line(screen, color, [424, 140], [423, 200], width)
+    pygame.draw.line(screen, color, [428, 140], [427, 200], width)
+    pygame.draw.line(screen, color, [432, 140], [431, 200], width)
+    pygame.draw.line(screen, color, [436, 140], [435, 200], width)
+    pygame.draw.line(screen, color, [440, 140], [438, 200], width)
+    pygame.draw.line(screen, color, [445, 140], [441, 200], width)
+    pygame.draw.line(screen, color, [450, 140], [444, 200], width)
+    pygame.draw.line(screen, color, [455, 140], [447, 200], width)
+    pygame.draw.line(screen, color, [460, 140], [450, 200], width)
+    pygame.draw.line(screen, color, [465, 140], [453, 200], width)
+    pygame.draw.line(screen, color, [470, 140], [456, 200], width)
+    pygame.draw.line(screen, color, [475, 140], [459, 200], width)
+
+def netPartTwo(color, width):
         
+        StartingXAxis = 320
+        StartingYAxis = 140
+        endingXAxis =324
+        endingYAxis = 216
+
         for i in range(8):
             pygame.draw.line(screen, color, [StartingXAxis, StartingYAxis], [endingXAxis, endingYAxis], width)
             endingXAxis += 2
             endingYAxis -= 2
 
 
-def netPartThree(color, StartingXAxis, StartingYAxis, endingXAxis, endingYAxis, width):
+def netPartThree(color, width):
+
+    StartingXAxis = 480
+    StartingYAxis = 140
+    endingXAxis = 476
+    endingYAxis = 216
    
     for i in range(8):
         pygame.draw.line(screen, color, [StartingXAxis, StartingYAxis], [endingXAxis, endingYAxis], width)
         endingXAxis -= 2
         endingYAxis -= 2         
 
+def netPartFour(color, width):
 
+    #net part 4
+    pygame.draw.line(screen, color, [324, 144], [476, 144], width)
+    pygame.draw.line(screen, color, [324, 148], [476, 148], width)
+    pygame.draw.line(screen, color, [324, 152], [476, 152], width)
+    pygame.draw.line(screen, color, [324, 156], [476, 156], width)
+    pygame.draw.line(screen, color, [324, 160], [476, 160], width)
+    pygame.draw.line(screen, color, [324, 164], [476, 164], width)
+    pygame.draw.line(screen, color, [324, 168], [476, 168], width)
+    pygame.draw.line(screen, color, [324, 172], [476, 172], width)
+    pygame.draw.line(screen, color, [324, 176], [476, 176], width)
+    pygame.draw.line(screen, color, [335, 180], [470, 180], width)
+    pygame.draw.line(screen, color, [335, 184], [465, 184], width)
+    pygame.draw.line(screen, color, [335, 188], [465, 188], width)
+    pygame.draw.line(screen, color, [335, 192], [465, 192], width)
+    pygame.draw.line(screen, color, [335, 196], [465, 196], width)
+
+def drawGoalPost(color, width):
+    netPartOne(color,width)
+    netPartTwo(color, width)
+    netPartThree(color,width)
+    netPartFour(color, width)
+
+def drawStands (upperStandColor, lowerStandColor):
+    #stands right
+    pygame.draw.polygon(screen, lowerStandColor, [[680, 220], [800, 340], [800, 290], [680, 180]])
+    pygame.draw.polygon(screen, upperStandColor, [[680, 180], [800, 100], [800, 290]])
+
+    #stands left
+    pygame.draw.polygon(screen, lowerStandColor, [[120, 220], [0, 340], [0, 290], [120, 180]])
+    pygame.draw.polygon(screen, upperStandColor, [[120, 180], [0, 100], [0, 290]])
+
+
+
+    
 # Config
 lights_on = True
 day = True
@@ -262,70 +345,10 @@ while not done:
     #lights
     lights(590,690)
 
-    #net
-    pygame.draw.line(screen, WHITE, [325, 140], [341, 200], 1) 
-    pygame.draw.line(screen, WHITE, [330, 140], [344, 200], 1)
-    pygame.draw.line(screen, WHITE, [335, 140], [347, 200], 1)
-    pygame.draw.line(screen, WHITE, [340, 140], [350, 200], 1)
-    pygame.draw.line(screen, WHITE, [345, 140], [353, 200], 1)
-    pygame.draw.line(screen, WHITE, [350, 140], [356, 200], 1)
-    pygame.draw.line(screen, WHITE, [355, 140], [359, 200], 1)
-    pygame.draw.line(screen, WHITE, [360, 140], [362, 200], 1)
-    pygame.draw.line(screen, WHITE, [364, 140], [365, 200], 1)
-    pygame.draw.line(screen, WHITE, [368, 140], [369, 200], 1)
-    pygame.draw.line(screen, WHITE, [372, 140], [373, 200], 1)
-    pygame.draw.line(screen, WHITE, [376, 140], [377, 200], 1)
-    pygame.draw.line(screen, WHITE, [380, 140], [380, 200], 1)
-    pygame.draw.line(screen, WHITE, [384, 140], [384, 200], 1)
-    pygame.draw.line(screen, WHITE, [388, 140], [388, 200], 1)
-    pygame.draw.line(screen, WHITE, [392, 140], [392, 200], 1)
-    pygame.draw.line(screen, WHITE, [396, 140], [396, 200], 1)
-    pygame.draw.line(screen, WHITE, [400, 140], [400, 200], 1)
-    pygame.draw.line(screen, WHITE, [404, 140], [404, 200], 1)
-    pygame.draw.line(screen, WHITE, [408, 140], [408, 200], 1)
-    pygame.draw.line(screen, WHITE, [412, 140], [412, 200], 1)
-    pygame.draw.line(screen, WHITE, [416, 140], [416, 200], 1)
-    pygame.draw.line(screen, WHITE, [420, 140], [420, 200], 1)
-    pygame.draw.line(screen, WHITE, [424, 140], [423, 200], 1)
-    pygame.draw.line(screen, WHITE, [428, 140], [427, 200], 1)
-    pygame.draw.line(screen, WHITE, [432, 140], [431, 200], 1)
-    pygame.draw.line(screen, WHITE, [436, 140], [435, 200], 1)
-    pygame.draw.line(screen, WHITE, [440, 140], [438, 200], 1)
-    pygame.draw.line(screen, WHITE, [445, 140], [441, 200], 1)
-    pygame.draw.line(screen, WHITE, [450, 140], [444, 200], 1)
-    pygame.draw.line(screen, WHITE, [455, 140], [447, 200], 1)
-    pygame.draw.line(screen, WHITE, [460, 140], [450, 200], 1)
-    pygame.draw.line(screen, WHITE, [465, 140], [453, 200], 1)
-    pygame.draw.line(screen, WHITE, [470, 140], [456, 200], 1)
-    pygame.draw.line(screen, WHITE, [475, 140], [459, 200], 1)
+    #Function to draw the goal post with parameters Colour and width
+    drawGoalPost(WHITE,1)
+    drawStands(WHITE, RED)
 
-    netPartTwo(WHITE,320,140,324,216, 1)
-    netPartThree(WHITE,480,140,476,216,1)
-
-
-    #net part 4
-    pygame.draw.line(screen, WHITE, [324, 144], [476, 144], 1)
-    pygame.draw.line(screen, WHITE, [324, 148], [476, 148], 1)
-    pygame.draw.line(screen, WHITE, [324, 152], [476, 152], 1)
-    pygame.draw.line(screen, WHITE, [324, 156], [476, 156], 1)
-    pygame.draw.line(screen, WHITE, [324, 160], [476, 160], 1)
-    pygame.draw.line(screen, WHITE, [324, 164], [476, 164], 1)
-    pygame.draw.line(screen, WHITE, [324, 168], [476, 168], 1)
-    pygame.draw.line(screen, WHITE, [324, 172], [476, 172], 1)
-    pygame.draw.line(screen, WHITE, [324, 176], [476, 176], 1)
-    pygame.draw.line(screen, WHITE, [335, 180], [470, 180], 1)
-    pygame.draw.line(screen, WHITE, [335, 184], [465, 184], 1)
-    pygame.draw.line(screen, WHITE, [335, 188], [465, 188], 1)
-    pygame.draw.line(screen, WHITE, [335, 192], [465, 192], 1)
-    pygame.draw.line(screen, WHITE, [335, 196], [465, 196], 1)
-
-    #stands right
-    pygame.draw.polygon(screen, RED, [[680, 220], [800, 340], [800, 290], [680, 180]])
-    pygame.draw.polygon(screen, WHITE, [[680, 180], [800, 100], [800, 290]])
-
-    #stands left
-    pygame.draw.polygon(screen, RED, [[120, 220], [0, 340], [0, 290], [120, 180]])
-    pygame.draw.polygon(screen, WHITE, [[120, 180], [0, 100], [0, 290]])
 
     #corner flag right
     pygame.draw.line(screen, BRIGHT_YELLOW, [140, 220], [135, 190], 3)
