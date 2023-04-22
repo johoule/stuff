@@ -1,4 +1,4 @@
-class Pet():
+class Pet(): # no main() function to run virtual_pet.py (might need to write a main function to run this code)
 
     def __init__(self, name):
         self.name = name
