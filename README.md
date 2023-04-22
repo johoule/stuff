@@ -1,3 +1,3 @@
-# Assignment 6 - Tiffany Truong, Katie Pham, Zoey Nguyen
-
-other stuff
+# Assignment 6 
+    Member Names
+ Tiffany Truong, Katie Pham, Zoey Nguyen
