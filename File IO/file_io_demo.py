@@ -76,4 +76,4 @@ print(count)
 with open('two_letters.txt', 'w') as f:
     for w in words:
         if len(w) == 2
-            f.write(w + "\n")
+            f.write(w + "\n");

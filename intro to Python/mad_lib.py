@@ -1,4 +1,4 @@
-# this is a mid lib
+# this is a mad lib
 #
 #Jordan Houle
 # October 28, 2015
