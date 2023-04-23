@@ -287,10 +287,8 @@ while not done:
     def draw_net2(x, y):
         pygame.draw.line(screen, WHITE, [320, 140], [x+2, y-2], 1)
 
-    i = 0
-    while (i < 8):
+    for i in range(8):
         draw_net2(324, 216)
-        i += 1
     
     # net part 2
     # pygame.draw.line(screen, WHITE, [320, 140], [324, 216], 1)
