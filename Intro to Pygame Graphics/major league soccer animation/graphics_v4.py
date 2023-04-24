@@ -70,6 +70,13 @@ def draw_cloud(color, x, y, scale):
     pygame.draw.ellipse(SEE_THROUGH, color, [x + 20*scale, y + 8*scale, 10*scale, 10*scale])
     pygame.draw.rect(SEE_THROUGH, color, [x + 6*scale, y + 8*scale, 18*scale, 10*scale])
 
+def drawGrass(color1, color2):
+    pygame.draw.rect(screen, color1, [0, 180, 800 , 420])
+    pygame.draw.rect(screen, color2, [0, 180, 800, 42])
+    pygame.draw.rect(screen, color2, [0, 264, 800, 52])
+    pygame.draw.rect(screen, color2, [0, 368, 800, 62])
+    pygame.draw.rect(screen, color2, [0, 492, 800, 82])
+
 def lights(a, b):
         '''lights(a,b) function creates the head of a stadium lights
 
@@ -248,8 +255,9 @@ for i in range(20):
 # Game loop
 done = False
 
-# Y to allow flags to move side to side
-flagHorizontalCounter = 0
+
+# Counter to allow flags to bounce up and down
+flagVerticalCounter = 0
 
 while not done:
     # Event processing (React to key presses, mouse clicks, etc.)
@@ -297,13 +305,9 @@ while not done:
     #stars
         for s in stars:
             drawStar(s[0], s[1], s[2], s[3])
-            #pygame.draw.ellipse(screen, WHITE, s)
-
-    pygame.draw.rect(screen, field_color, [0, 180, 800 , 420])
-    pygame.draw.rect(screen, stripe_color, [0, 180, 800, 42])
-    pygame.draw.rect(screen, stripe_color, [0, 264, 800, 52])
-    pygame.draw.rect(screen, stripe_color, [0, 368, 800, 62])
-    pygame.draw.rect(screen, stripe_color, [0, 492, 800, 82])
+            
+    drawGrass(field_color, stripe_color)
+    
 
 
     '''fence'''
@@ -370,8 +374,8 @@ while not done:
 
 
     #flag moving code
-    flagHorizontalCounter+=0.75
-    offset = flagHorizontalCounter % 40 - 20
+    flagVerticalCounter+=0.75
+    offset = flagVerticalCounter % 40 - 20
     if (offset > 0):
         offset *= -1
 
