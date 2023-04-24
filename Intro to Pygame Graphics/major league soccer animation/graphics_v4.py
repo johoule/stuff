@@ -3,7 +3,7 @@ import pygame
 import math
 import random
 
-
+#easy modifications such as altering object locations, quantities, and sizes
 # Initialize game engine
 pygame.init()
 
@@ -68,30 +68,65 @@ def draw_cloud(x, y):
     pygame.draw.ellipse(SEE_THROUGH, cloud_color, [x + 20, y + 8, 10, 10])
     pygame.draw.rect(SEE_THROUGH, cloud_color, [x + 6, y + 8, 18, 10])
 
-def lights(a, b):
-        '''lights(a,b) function creates the head of a stadium lights
+def stadium_light(pole_color, pole_dimensions, lights_color, light_dimension_x, light_dimension_y ):
+        '''stadium_light function creates the stadium lights that include the pole and 10 lights. The parameters allow the change of
+        colors and positioning of the pole and lights.
 
-        :param: a determines positioning of the stadium head graphic
-        :param: b figures out the length of where the pygame draws
+        Parameters:
+        pole_color (String):            desired color for the pole
+        pole_dimensions (int List):     dimensions of the pole. [left, top, width, height]
+        lights_color (String):          desired color for the lights
+        light_dimension_x:              where the desired rows of lights would start being drawn from
+        light_dimension_y:              where the desired rows of lights would end at
+
+        Returns:
+        None        
         '''
-        pygame.draw.line(screen, GRAY, [a, 60], [b, 60], 2)
-        pygame.draw.ellipse(screen, light_color, [a, 40, 20, 20])
-        pygame.draw.ellipse(screen, light_color, [a+20, 40, 20, 20])
-        pygame.draw.ellipse(screen, light_color, [a+40, 40, 20, 20])
-        pygame.draw.ellipse(screen, light_color, [a+60, 40, 20, 20])
-        pygame.draw.ellipse(screen, light_color, [a+80, 40, 20, 20])
-        pygame.draw.line(screen, GRAY, [a, 40], [b, 40], 2)
-        pygame.draw.ellipse(screen, light_color, [a, 20, 20, 20])
-        pygame.draw.ellipse(screen, light_color, [a+20, 20, 20, 20])
-        pygame.draw.ellipse(screen, light_color, [a+40, 20, 20, 20])
-        pygame.draw.ellipse(screen, light_color, [a+60, 20, 20, 20])
-        pygame.draw.ellipse(screen, light_color, [a+80, 20, 20, 20])
-        pygame.draw.line(screen, GRAY, [a, 20], [b, 20], 2)
+
+        pygame.draw.rect(screen, pole_color, pole_dimensions)
+        pygame.draw.ellipse(screen, pole_color, [pole_dimensions[0],pole_dimensions[1]+135, pole_dimensions[2], pole_dimensions[3]-130])
+        n = 0
+        height = 0
+        for i in range(2):
+            pygame.draw.line(screen, pole_color, [light_dimension_x, 60-height], [light_dimension_y, 60-height], 2)
+            for i in range(5):
+                pygame.draw.ellipse(screen, lights_color, [light_dimension_x + n, 40 - height, 20, 20])
+                n += 20
+            n = 0
+            height += 20
+        pygame.draw.line(screen, pole_color, [light_dimension_x, 20], [light_dimension_y, 20], 2)
+
+        #pygame.draw.rect(screen, GRAY, [150, 60, 20, 140])
+        #pygame.draw.ellipse(screen, GRAY, [150, 195, 20, 10])
+        #lights(110,210)
+
+def fence(color):
+        '''fence function determines the background fence of the graphic. With the parameters able to change the color and positioning
+        of the fence.
+        
+        Parameters:
+        color (String):     desired color of the fence
+        x_pos (int):        x position of the fence
+        y_pos (int):        y position of the fence
+
+        Returns:
+        None
+        '''
+        y = 170
+        for x in range(5, 800, 30):
+            pygame.draw.polygon(screen, color, [[x + 2, y], [x + 2, y + 15], [x, y + 15], [x, y]])
+
+        y = 170
+        for x in range(5, 800, 3):
+            pygame.draw.line(screen, color, [x, y], [x, y + 15], 1)
+
+        x = 0
+        for y in range(170, 185, 4):
+            pygame.draw.line(screen, color, [x, y], [x + 800, y], 1)
 
 # Config
 lights_on = True
 day = True
-
 
 stars = []
 for n in range(200):
@@ -164,17 +199,7 @@ while not done:
 
 
     '''fence'''
-    y = 170
-    for x in range(5, 800, 30):
-        pygame.draw.polygon(screen, NIGHT_GRAY, [[x + 2, y], [x + 2, y + 15], [x, y + 15], [x, y]])
-
-    y = 170
-    for x in range(5, 800, 3):
-        pygame.draw.line(screen, NIGHT_GRAY, [x, y], [x, y + 15], 1)
-
-    x = 0
-    for y in range(170, 185, 4):
-        pygame.draw.line(screen, NIGHT_GRAY, [x, y], [x + 800, y], 1)
+    fence(NIGHT_GRAY)
 
     if day:
         pygame.draw.ellipse(screen, BRIGHT_YELLOW, [520, 50, 40, 40])
@@ -182,8 +207,6 @@ while not done:
         pygame.draw.ellipse(screen, WHITE, [520, 50, 40, 40]) 
         pygame.draw.ellipse(screen, sky_color, [530, 45, 40, 40])
 
-    
-    
     for c in clouds:
         draw_cloud(c[0], c[1])
     screen.blit(SEE_THROUGH, (0, 0))   
@@ -232,19 +255,11 @@ while not done:
     pygame.draw.line(screen, WHITE, [270, 270], [530, 270], 2)
     pygame.draw.line(screen, WHITE, [530, 270], [490, 220], 3)
 
-    #light pole 1
-    pygame.draw.rect(screen, GRAY, [150, 60, 20, 140])
-    pygame.draw.ellipse(screen, GRAY, [150, 195, 20, 10])
+    #light pole and lights 1
+    stadium_light(GRAY,[150, 60, 20, 140], YELLOW, 110,210)
 
-    #lights pole 1
-    lights(110,210)
-
-    #light pole 2
-    pygame.draw.rect(screen, GRAY, [630, 60, 20, 140])
-    pygame.draw.ellipse(screen, GRAY, [630, 195, 20, 10])
-
-    #lights
-    lights(590,690)
+    #light pole and lights 2
+    stadium_light(GRAY,[630, 60, 20, 140], YELLOW, 590,690)
 
     #net
     pygame.draw.line(screen, WHITE, [325, 140], [341, 200], 1) 
