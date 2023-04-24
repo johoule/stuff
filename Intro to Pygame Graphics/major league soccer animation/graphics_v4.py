@@ -378,10 +378,10 @@ while not done:
 
 
     #light pole and lights 1
-    stadium_light(GRAY,[150, 60, 20, 140], YELLOW, 110,210)
+    stadium_light(GRAY,[150, 60, 20, 140], light_color, 110,210)
 
     #light pole and lights 2
-    stadium_light(GRAY,[630, 60, 20, 140], YELLOW, 590,690)
+    stadium_light(GRAY,[630, 60, 20, 140], light_color, 590,690)
 
     #Function to draw the goal post with parameters Colour and width
     drawGoalPost(WHITE,1)
