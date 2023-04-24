@@ -47,7 +47,7 @@ SEE_THROUGH = pygame.Surface((800, 180))
 SEE_THROUGH.set_alpha(150)
 SEE_THROUGH.fill((124, 118, 135))
 
-def draw_cloud(x, y):
+def draw_cloud(color, x, y, scale):
     '''
     This function draws a cloud shape on the Pygame surface specified by the global variable SEE_THROUGH. 
     The cloud shape consists of four ellipses and one rectangle, all with the same color specified by the 
@@ -55,18 +55,20 @@ def draw_cloud(x, y):
     given x and y coordinates.
 
     Parameters:
+    color (tuple): The color for the cloud as a tuple of 3 integers representing the RGB color.
     x (int): The x-coordinate of the top-left corner of the cloud shape.
     y (int): The y-coordinate of the top-left corner of the cloud shape.
+    scale (float): Scale factor to resize the cloud.
 
     Returns:
     None
     '''
 
-    pygame.draw.ellipse(SEE_THROUGH, cloud_color, [x, y + 8, 10, 10])
-    pygame.draw.ellipse(SEE_THROUGH, cloud_color, [x + 6, y + 4, 8, 8])
-    pygame.draw.ellipse(SEE_THROUGH, cloud_color, [x + 10, y, 16, 16])
-    pygame.draw.ellipse(SEE_THROUGH, cloud_color, [x + 20, y + 8, 10, 10])
-    pygame.draw.rect(SEE_THROUGH, cloud_color, [x + 6, y + 8, 18, 10])
+    pygame.draw.ellipse(SEE_THROUGH, color, [x, y + 8*scale, 10*scale, 10*scale])
+    pygame.draw.ellipse(SEE_THROUGH, color, [x + 6*scale, y + 4*scale, 8*scale, 8*scale])
+    pygame.draw.ellipse(SEE_THROUGH, color, [x + 10*scale, y, 16*scale, 16*scale])
+    pygame.draw.ellipse(SEE_THROUGH, color, [x + 20*scale, y + 8*scale, 10*scale, 10*scale])
+    pygame.draw.rect(SEE_THROUGH, color, [x + 6*scale, y + 8*scale, 18*scale, 10*scale])
 
 def lights(a, b):
         '''lights(a,b) function creates the head of a stadium lights
@@ -284,7 +286,7 @@ while not done:
     
     
     for c in clouds:
-        draw_cloud(c[0], c[1])
+        draw_cloud(cloud_color, c[0], c[1], 3)
     screen.blit(SEE_THROUGH, (0, 0))   
     
 
