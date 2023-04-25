@@ -57,10 +57,16 @@ def draw_cloud(x, y):
 lights_on = True
 day = True
 
-#simplied the star and cloud loops
-stars = [[random.randrange(0, 800), random.randrange(0, 200), random.randrange(1, 2), random.randrange(1, 2)] for n in range(200)]
-clouds = [[random.randrange(-100, 1600), random.randrange(0, 150)] for i in range(20)]
+
+
+def generate_stars_and_clouds():
+    stars = [[random.randrange(0, 800), random.randrange(0, 200), random.randrange(1, 2), random.randrange(1, 2)] for n in range(200)]
+    clouds = [[random.randrange(-100, 1600), random.randrange(0, 150)] for i in range(20)]
+    return stars, clouds
    
+#usage 
+stars, clouds = generate_stars_and_clouds()
+
 # Game loop
 done = False
 
@@ -80,10 +86,15 @@ while not done:
     ''' made the lights and shades of things simplier ''' 
     light_color = YELLOW if lights_on else SILVER
 
-    if day:
-         sky_color, field_color, stripe_color, cloud_color = BLUE, GREEN, DAY_GREEN, WHITE
-    else:
-    	sky_color, field_color, stripe_color, cloud_color = DARK_BLUE, DARK_GREEN, NIGHT_GREEN, NIGHT_GRAY
+    def get_colors(day):
+        if day:
+            sky_color, field_color, stripe_color, cloud_color = BLUE, GREEN, DAY_GREEN, WHITE
+        else:
+            sky_color, field_color, stripe_color, cloud_color = DARK_BLUE, DARK_GREEN, NIGHT_GREEN, NIGHT_GRAY
+        return sky_color, field_color, stripe_color, cloud_color
+
+    sky_color, field_color, stripe_color, cloud_color = get_colors(day)
+
 
     for c in clouds:
         c[0] -= 0.5
@@ -91,6 +102,7 @@ while not done:
         if c[0] < -100:
             c[0] = random.randrange(800, 1600)
             c[1] = random.randrange(0, 150)
+
 
             
     # Drawing code (Describe the picture. It isn't actually drawn yet.)
@@ -103,15 +115,15 @@ while not done:
         for s in stars:
             pygame.draw.ellipse(screen, WHITE, s)
 
+    def draw_field_and_stripes(screen, field_color, stripe_color):
+        pygame.draw.rect(screen, field_color, [0, 180, 800 , 420])
+        pygame.draw.rect(screen, stripe_color, [0, 180, 800, 42])
+        pygame.draw.rect(screen, stripe_color, [0, 264, 800, 52])
+        pygame.draw.rect(screen, stripe_color, [0, 368, 800, 62])
+        pygame.draw.rect(screen, stripe_color, [0, 492, 800, 82])
 
-
-
-    pygame.draw.rect(screen, field_color, [0, 180, 800 , 420])
-    pygame.draw.rect(screen, stripe_color, [0, 180, 800, 42])
-    pygame.draw.rect(screen, stripe_color, [0, 264, 800, 52])
-    pygame.draw.rect(screen, stripe_color, [0, 368, 800, 62])
-    pygame.draw.rect(screen, stripe_color, [0, 492, 800, 82])
-
+    draw_field_and_stripes(screen, field_color, stripe_color)
+    
 
     '''fence'''
     def draw_fence(screen, color):
@@ -127,7 +139,14 @@ while not done:
 
     draw_fence(screen, NIGHT_GRAY)
     
-    
+    def draw_sun_or_moon(screen, day, sky_color):
+        if day:
+            pygame.draw.ellipse(screen, BRIGHT_YELLOW, [520, 50, 40, 40])
+        else:
+            pygame.draw.ellipse(screen, WHITE, [520, 50, 40, 40]) 
+            pygame.draw.ellipse(screen, sky_color, [530, 45, 40, 40])
+
+    draw_sun_or_moon(screen, day, sky_color)
     
     for c in clouds:
         draw_cloud(c[0], c[1])
@@ -167,7 +186,6 @@ while not done:
     def goal(length,height,color):
         """
         goal draws a goal net based on its length, height, and color
-
         :length: length of the rectangle shape goal net
         :height: height of the rectangle shape goal net
         :color: color of the goal net
@@ -204,7 +222,6 @@ while not done:
     def draw_line_goal_box(color):
         """
         draw_line_goal_box draws the line in front of the goal net based on the provided color
-
         :color: color of the boal box line
         """ 
         pygame.draw.line(screen, color, [310, 220], [270, 270], 3)
@@ -217,7 +234,6 @@ while not done:
     def draw_light(x_index):
         """
         draw_light draws the light of the court based on the provided x index
-
         :x_index: x index of the light pole bottom
         """ 
         pygame.draw.rect(screen, GRAY, [x_index, 60, 20, 140])
@@ -260,7 +276,6 @@ while not done:
     def draw_left_flag(stick_color, flag_color, x, y):
         """
         draw_left_flag draws a small flag t that tilted left based on xy index and its color
-
         :stick_color: stick color
         :flag_color: flag color
         :x: x index
@@ -273,7 +288,6 @@ while not done:
     def draw_right_flag(stick_color, flag_color, x, y):
         """
         draw_left_flag draws a small flag t that tilted right based on xy index and its color
-
         :stick_color: stick color
         :flag_color: flag color
         :x: x index
