@@ -1,5 +1,5 @@
 # CS2520 Assignment 6
-refactoring functions
+project is located under Intro to Pygame Graphics > major league soccer animation > graphics_v4.py
 
 updated star and cloud loops:
   This code uses list comprehension to create the stars and clouds lists in a more concise way. It also eliminates the need for temporary variables x, y, and r.
