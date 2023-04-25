@@ -52,7 +52,7 @@ Parameter:
         :back_color: back color of the stand
 
 def draw_left_flag(stick_color, flag_color, x, y):
-	draw_left_flag draws a small flag t that tilted left based on xy index and its color
+	draw_left_flag draws a small flag t that tilted left based on x and y index and its color
 Parameter:
         :stick_color: stick color
         :flag_color: flag color
@@ -60,7 +60,7 @@ Parameter:
         :y: y index
 	
  draw_right_flag(stick_color, flag_color, x, y):
-        draw_left_flag draws a small flag t that tilted right based on xy index and its color
+        draw_left_flag draws a small flag t that tilted right based on x and y index and its color
 Parameter:
         :stick_color: stick color
         :flag_color: flag color
