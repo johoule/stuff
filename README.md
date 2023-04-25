@@ -10,3 +10,4 @@ simplied draw_cloud:
 
 Members:
 Natalia Jauregui
+Haosi Lin
