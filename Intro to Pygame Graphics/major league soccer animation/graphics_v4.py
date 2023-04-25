@@ -46,7 +46,7 @@ SEE_THROUGH = pygame.Surface((800, 180))
 SEE_THROUGH.set_alpha(150)
 SEE_THROUGH.fill((124, 118, 135))
 
-#simplier function that uses loops to draw clouds
+#function that uses loops to draw clouds
 def draw_cloud(x, y):
     ellipses = [[x, y + 8, 10, 10], [x + 6, y + 4, 8, 8], [x + 10, y, 16, 16], [x + 20, y + 8, 10, 10]]
     for ellipse in ellipses:
@@ -58,7 +58,7 @@ lights_on = True
 day = True
 
 
-
+#function that generates a list of star and clouds at a random size and position
 def generate_stars_and_clouds():
     stars = [[random.randrange(0, 800), random.randrange(0, 200), random.randrange(1, 2), random.randrange(1, 2)] for n in range(200)]
     clouds = [[random.randrange(-100, 1600), random.randrange(0, 150)] for i in range(20)]
@@ -83,9 +83,11 @@ while not done:
                 day = not day
 
     # Game logic (Check for collisions, update points, etc.)
-    ''' made the lights and shades of things simplier ''' 
+    ''' made the lights and shades of things simplier '''
+    #makes the light conditional easier without so many if statements or lines 
     light_color = YELLOW if lights_on else SILVER
 
+    #gets the color of the  enviroment depending on the the time of day
     def get_colors(day):
         if day:
             sky_color, field_color, stripe_color, cloud_color = BLUE, GREEN, DAY_GREEN, WHITE
@@ -95,7 +97,7 @@ while not done:
 
     sky_color, field_color, stripe_color, cloud_color = get_colors(day)
 
-
+    #populates the clouds 
     for c in clouds:
         c[0] -= 0.5
 
@@ -114,18 +116,21 @@ while not done:
     #stars
         for s in stars:
             pygame.draw.ellipse(screen, WHITE, s)
-
+            
+    #used to draws the stripes on the field 
     def draw_field_and_stripes(screen, field_color, stripe_color):
         pygame.draw.rect(screen, field_color, [0, 180, 800 , 420])
         pygame.draw.rect(screen, stripe_color, [0, 180, 800, 42])
         pygame.draw.rect(screen, stripe_color, [0, 264, 800, 52])
         pygame.draw.rect(screen, stripe_color, [0, 368, 800, 62])
         pygame.draw.rect(screen, stripe_color, [0, 492, 800, 82])
-
+        
+    #usage
     draw_field_and_stripes(screen, field_color, stripe_color)
     
 
     '''fence'''
+    #used to draw the fence in the background 
     def draw_fence(screen, color):
         y = 170
         for x in range(5, 800, 30):
@@ -136,18 +141,21 @@ while not done:
         x= 0
         for y in range(170, 185, 4):
             pygame.draw.line(screen, NIGHT_GRAY, [x, y], [x + 800, y], 1)
-
+    #usage 
     draw_fence(screen, NIGHT_GRAY)
     
+    
+    #draws the shape of the sun and moon depending if it is day or night 
     def draw_sun_or_moon(screen, day, sky_color):
         if day:
             pygame.draw.ellipse(screen, BRIGHT_YELLOW, [520, 50, 40, 40])
         else:
             pygame.draw.ellipse(screen, WHITE, [520, 50, 40, 40]) 
             pygame.draw.ellipse(screen, sky_color, [530, 45, 40, 40])
-
+    #usage
     draw_sun_or_moon(screen, day, sky_color)
     
+    #draws the clouds 
     for c in clouds:
         draw_cloud(c[0], c[1])
     screen.blit(SEE_THROUGH, (0, 0))   
