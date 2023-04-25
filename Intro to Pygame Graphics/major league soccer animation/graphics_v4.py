@@ -235,7 +235,7 @@ while not done:
         pygame.draw.line(screen, color, [310, 220], [270, 270], 3)
         pygame.draw.line(screen, color, [270, 270], [530, 270], 2)
         pygame.draw.line(screen, color, [530, 270], [490, 220], 3)
-    
+    #usage
     draw_line_goal_box(WHITE)
 
     #function to draw light based on its x index
@@ -262,6 +262,7 @@ while not done:
         pygame.draw.line(screen, GRAY, [x_index - 40, 20], [x_index + 60, 20], 2)
     
     #drawing left and right light
+    #usage 
     draw_light(150)
     draw_light(590)
 
@@ -277,6 +278,7 @@ while not done:
         pygame.draw.polygon(screen, front_color, [[120, 220], [0, 340], [0, 290], [120, 180]])
         pygame.draw.polygon(screen, back_color, [[120, 180], [0, 100], [0, 290]])
 
+    #usage
     #draw left and right stands
     draw_stand(RED,GREEN)
 
