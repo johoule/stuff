@@ -44,5 +44,5 @@ __draw_right_flag(stick_color, flag_color, x, y):__
 
 
 Members:
-Natalia Jauregui
-Haosi Lin
+Natalia Jauregui (chocolatecheerios)
+Haosi Lin (gxxxid)
