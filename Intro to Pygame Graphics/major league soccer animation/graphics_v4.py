@@ -181,7 +181,7 @@ while not done:
     pygame.draw.arc(screen, WHITE, [330, 280, 140, 40], math.pi, 2 * math.pi, 5)
     
     # function to draw score board in the center of the screen behind goal net
-    def score_board(pole_thick,board_length,board_height):
+    def score_board(pole_thick, board_length, board_height):
         pygame.draw.rect(screen, GRAY, [390, 120, pole_thick, 70])
         pygame.draw.rect(screen, BLACK, [400- board_length//2, 40, board_length, board_height])
         pygame.draw.rect(screen, WHITE, [402 - board_length//2, 42, board_length-2, board_height-2], 2)
@@ -191,7 +191,7 @@ while not done:
 
     #goal is always in the center just like the board
     #drawing a goal with net in the center of the screen
-    def goal(length,height,color):
+    def goal(length, height, color):
         """
         goal draws a goal net based on its length, height, and color
         :length: length of the rectangle shape goal net
@@ -267,7 +267,7 @@ while not done:
     draw_light(590)
 
     #function to draw left and right stands 
-    def draw_stand(front_color,back_color):
+    def draw_stand(front_color, back_color):
         """
         draw_stand draws the left and right viewer stands based on the provided color
         :front_color: front color of the stand
@@ -326,7 +326,6 @@ while not done:
 
     # Limit refresh rate of game loop 
     clock.tick(refresh_rate)
-
 
 # Close window and quit
 pygame.quit()
