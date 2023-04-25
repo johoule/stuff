@@ -305,7 +305,8 @@ while not done:
         """ 
         pygame.draw.line(screen, stick_color, [x - 5, y + 30], [x, y], 3)
         pygame.draw.polygon(screen, flag_color, [[x + 3, y], [x + 10, y + 6], [x, y + 15]])
-
+    
+    #drawing two flag
     draw_left_flag(YELLOW, RED, 135, 190)
     draw_right_flag(BRIGHT_YELLOW, RED, 665, 190)
 
