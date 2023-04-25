@@ -46,30 +46,21 @@ SEE_THROUGH = pygame.Surface((800, 180))
 SEE_THROUGH.set_alpha(150)
 SEE_THROUGH.fill((124, 118, 135))
 
+#simplier function that uses loops to draw clouds
 def draw_cloud(x, y):
-    pygame.draw.ellipse(SEE_THROUGH, cloud_color, [x, y + 8, 10, 10])
-    pygame.draw.ellipse(SEE_THROUGH, cloud_color, [x + 6, y + 4, 8, 8])
-    pygame.draw.ellipse(SEE_THROUGH, cloud_color, [x + 10, y, 16, 16])
-    pygame.draw.ellipse(SEE_THROUGH, cloud_color, [x + 20, y + 8, 10, 10])
+    ellipses = [[x, y + 8, 10, 10], [x + 6, y + 4, 8, 8], [x + 10, y, 16, 16], [x + 20, y + 8, 10, 10]]
+    for ellipse in ellipses:
+        pygame.draw.ellipse(SEE_THROUGH, cloud_color, ellipse)
     pygame.draw.rect(SEE_THROUGH, cloud_color, [x + 6, y + 8, 18, 10])
 
 # Config
 lights_on = True
 day = True
 
-stars = []
-for n in range(200):
-    x = random.randrange(0, 800)
-    y = random.randrange(0, 200)
-    r = random.randrange(1, 2)
-    stars.append([x, y, r, r])
-
-clouds = []
-for i in range(20):
-    x = random.randrange(-100, 1600)
-    y = random.randrange(0, 150)
-    clouds.append([x, y])
-    
+#simplied the star and cloud loops
+stars = [[random.randrange(0, 800), random.randrange(0, 200), random.randrange(1, 2), random.randrange(1, 2)] for n in range(200)]
+clouds = [[random.randrange(-100, 1600), random.randrange(0, 150)] for i in range(20)]
+   
 # Game loop
 done = False
 
