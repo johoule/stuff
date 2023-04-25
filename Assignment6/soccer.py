@@ -86,3 +86,76 @@ class Soccer():
             y = random.randrange(0, 150)
             self.clouds.append([x, y])
     
+    def event_handler(self, event) -> None:
+        """handle event when pass in."""
+        if event.type == pygame.QUIT:
+            self.done = True
+        elif event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_l:
+                self.lights_on = not self.lights_on
+            elif event.key == pygame.K_d:
+                self.day = not self.day
+
+    def run(self) -> None:
+        """run starts the game, go through the game loop and exit"""
+        while not self.done:
+            # Event processing (React to key presses, mouse clicks, etc.)
+            for event in pygame.event.get():
+                self.event_handler(event)
+
+            # Game logic (Check for collisions, update points, etc.)
+            if self.lights_on:
+                light_color = YELLOW
+            else:
+                light_color = SILVER
+
+            if self.day:
+                sky_color = BLUE
+                field_color = GREEN
+                stripe_color = DAY_GREEN
+                cloud_color = WHITE
+            else:
+                sky_color = DARK_BLUE
+                field_color = DARK_GREEN
+                stripe_color = NIGHT_GREEN
+                cloud_color = NIGHT_GRAY
+
+            for cloud in self.clouds:
+                cloud[0] -= 0.5
+                if cloud[0] < -100:
+                    cloud[0] = random.randrange(800, 1600)
+                    cloud[1] = random.randrange(0, 150)
+                    
+            # Drawing code (Describe the picture. It isn't actually drawn yet.)
+            self.screen.fill(sky_color)
+            self.SEE_THROUGH.fill(ck)
+            self.SEE_THROUGH.set_colorkey(ck)
+            
+            # stars
+            if not self.day:
+                for star in self.stars:
+                    pygame.draw.ellipse(self.screen, WHITE, star)
+
+            self.draw_fields(self.screen, field_color, stripe_color)
+            self.draw_fence(self.screen)
+            self.draw_sun_moon(self.screen, sky_color, x_offset=-10, size_offset=5)
+            self.draw_clouds(self.screen) 
+            self.draw_field_lines(self.screen)
+            self.draw_scoreboard(self.screen)
+            self.draw_light_pole(self.screen, light_color, pole1_x_offset=40, pole2_x_offset=-40)
+            self.draw_goal(self.screen)
+            self.draw_stands(self.screen)
+            self.draw_corner_flag(self.screen)
+
+            # DARKNESS
+            if not self.day and not self.lights_on:
+                self.screen.blit(self.DARKNESS, (0, 0))    
+
+            # Update screen (Actually draw the picture in the window.)
+            pygame.display.flip()
+
+            # Limit refresh rate of game loop 
+            self.clock.tick(self.refresh_rate)
+
+        # Close window and quit
+        pygame.quit()
