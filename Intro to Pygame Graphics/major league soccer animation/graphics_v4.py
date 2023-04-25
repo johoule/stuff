@@ -16,7 +16,7 @@ pygame.display.set_caption(TITLE)
 
 # Timer
 clock = pygame.time.Clock()
-refresh_rate = 60
+refresh_rate = int(input("What do you want the refresh rate to be: "))
 
 
 # Colors
@@ -46,37 +46,108 @@ SEE_THROUGH = pygame.Surface((800, 180))
 SEE_THROUGH.set_alpha(150)
 SEE_THROUGH.fill((124, 118, 135))
 
-def draw_cloud(x, y):
-    pygame.draw.ellipse(SEE_THROUGH, cloud_color, [x, y + 8, 10, 10])
-    pygame.draw.ellipse(SEE_THROUGH, cloud_color, [x + 6, y + 4, 8, 8])
-    pygame.draw.ellipse(SEE_THROUGH, cloud_color, [x + 10, y, 16, 16])
-    pygame.draw.ellipse(SEE_THROUGH, cloud_color, [x + 20, y + 8, 10, 10])
-    pygame.draw.rect(SEE_THROUGH, cloud_color, [x + 6, y + 8, 18, 10])
+import pygame
+
+# Get user input for x_cloud, y_cloud, cloud_color, and cloud_size
+x_cloud = int(input("Enter the x-coordinate of the cloud's top-left corner: "))
+y_cloud = int(input("Enter the y-coordinate of the cloud's top-left corner: "))
+cloud_color = tuple(map(int, input("Enter the color of the cloud in RGB format (comma-separated values): ").split(',')))
+cloud_size = int(input("Enter the size of the cloud: "))
+
+def draw_cloud(x_cloud, y_cloud, cloud_color, cloud_size):
+    """
+    Draw a cloud at the given x, y coordinates with the specified color and size.
+
+    Args:
+        x_cloud (int): The x-coordinate of the cloud's top-left corner.
+        y_cloud (int): The y-coordinate of the cloud's top-left corner.
+        cloud_color (tuple): The color of the cloud in RGB format, e.g. (255, 255, 255) for white.
+        cloud_size (int): The size of the cloud, which determines the size of the ellipses and rectangle.
+
+    Returns:
+        None
+    """
+    # Define the sizes of the ellipses and rectangle based on cloud_size
+    ellipse1_size = int(10 * cloud_size / 30)
+    ellipse2_size = int(8 * cloud_size / 30)
+    ellipse3_size = int(16 * cloud_size / 30)
+    ellipse4_size = int(10 * cloud_size / 30)
+    rect_width = int(18 * cloud_size / 30)
+    rect_height = int(10 * cloud_size / 30)
+
+    # Draw the ellipses and rectangle with the specified color and sizes
+    pygame.draw.ellipse(SEE_THROUGH, cloud_color, [x_cloud, y_cloud + ellipse1_size, ellipse1_size, ellipse1_size])
+    pygame.draw.ellipse(SEE_THROUGH, cloud_color, [x_cloud + int(6 * cloud_size / 30), y_cloud + ellipse2_size, ellipse2_size, ellipse2_size])
+    pygame.draw.ellipse(SEE_THROUGH, cloud_color, [x_cloud + int(10 * cloud_size / 30), y_cloud, ellipse3_size, ellipse3_size])
+    pygame.draw.ellipse(SEE_THROUGH, cloud_color, [x_cloud + int(20 * cloud_size / 30), y_cloud + ellipse4_size, ellipse4_size, ellipse4_size])
+    pygame.draw.rect(SEE_THROUGH, cloud_color, [x_cloud + int(6 * cloud_size / 30), y_cloud + ellipse1_size, rect_width, rect_height])
+
+# Call the function with user input values
+draw_cloud(x_cloud, y_cloud, cloud_color, cloud_size)
+
 
 
 # Config
-lights_on = True
-day = True
+#True or False values
+def are_lights_on():
+    """
+    Check if the lights are on.
 
-stars = []
-for n in range(200):
-    x = random.randrange(0, 800)
-    y = random.randrange(0, 200)
-    r = random.randrange(1, 2)
-    stars.append([x, y, r, r])
+    Returns:
+        bool: True if the lights are on, False otherwise.
+    """
+    lights_on = input("Are the lights on:(yes/no) ")
+    if lights_on.lower() == "yes" or lights_on.lower() == "y":
+        return True
+    else:
+        return False
 
-clouds = []
-for i in range(20):
-    x = random.randrange(-100, 1600)
-    y = random.randrange(0, 150)
-    clouds.append([x, y])
+
+def is_day():
+    """
+    Check if it is day.
+
+    Returns:
+        bool: True if it is day, False otherwise.
+    """
+    day = input("Is it day?(yes/no) ")
+    if day.lower() == "yes" or day.lower() == "y":
+        return True
+    else:
+        return False
+
+
+def generate_stars_and_clouds():
+    """
+    Generate stars and clouds for the animation, taking user input for the number of stars and clouds.
+
+    Returns:
+        tuple: A tuple containing two lists: stars and clouds.
+    """
+    num_stars = int(input("Enter the number of stars to generate: "))
+    num_clouds = int(input("Enter the number of clouds to generate: "))
+
+    stars = []
+    for n in range(num_stars):
+        x = random.randrange(0, 800)
+        y = random.randrange(0, 200)
+        r = random.randrange(1, 2)
+        stars.append([x, y, r, r])
+
+    clouds = []
+    for i in range(num_clouds):
+        x = random.randrange(-100, 1600)
+        y = random.randrange(0, 150)
+        clouds.append([x, y])
+
+    return stars, clouds
+
+
+stars, clouds = generate_stars_and_clouds()
+
     
-# Game loop
-done = False
-
-while not done:
-    # Event processing (React to key presses, mouse clicks, etc.)
-    ''' for now, we'll just check to see if the X is clicked '''
+def event_processing():
+    global done, lights_on, day
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             done = True
@@ -86,8 +157,8 @@ while not done:
             elif event.key == pygame.K_d:
                 day = not day
 
-    # Game logic (Check for collisions, update points, etc.)
-    ''' leave this section alone for now ''' 
+def game_logic():
+    global light_color, sky_color, field_color, stripe_color, cloud_color
     if lights_on:
         light_color = YELLOW
     else:
@@ -110,19 +181,17 @@ while not done:
         if c[0] < -100:
             c[0] = random.randrange(800, 1600)
             c[1] = random.randrange(0, 150)
-            
-    # Drawing code (Describe the picture. It isn't actually drawn yet.)
+
+def drawing_code():
+    global screen
     screen.fill(sky_color)
     SEE_THROUGH.fill(ck)
     SEE_THROUGH.set_colorkey(ck)
-    
+
     if not day:
-    #stars
+        # stars
         for s in stars:
             pygame.draw.ellipse(screen, WHITE, s)
-
-
-
 
     pygame.draw.rect(screen, field_color, [0, 180, 800 , 420])
     pygame.draw.rect(screen, stripe_color, [0, 180, 800, 42])
@@ -130,8 +199,7 @@ while not done:
     pygame.draw.rect(screen, stripe_color, [0, 368, 800, 62])
     pygame.draw.rect(screen, stripe_color, [0, 492, 800, 82])
 
-
-    '''fence'''
+    # fence
     y = 170
     for x in range(5, 800, 30):
         pygame.draw.polygon(screen, NIGHT_GRAY, [[x + 2, y], [x + 2, y + 15], [x, y + 15], [x, y]])
@@ -147,34 +215,62 @@ while not done:
     if day:
         pygame.draw.ellipse(screen, BRIGHT_YELLOW, [520, 50, 40, 40])
     else:
-        pygame.draw.ellipse(screen, WHITE, [520, 50, 40, 40]) 
+        pygame.draw.ellipse(screen, WHITE, [520, 50, 40, 40])
         pygame.draw.ellipse(screen, sky_color, [530, 45, 40, 40])
 
-    
-    
     for c in clouds:
         draw_cloud(c[0], c[1])
-    screen.blit(SEE_THROUGH, (0, 0))   
+    screen.blit(SEE_THROUGH, (0, 0))
+
+done = False
+
+while not done:
+    event_processing()
+    game_logic()
+    drawing_code()
+
     
+def draw_soccer_field():
+    """
+    Draw the soccer field lines and arcs with user-input parameters.
+    """
+    # Get user input for colors and thicknesses
+    out_of_bounds_color = tuple(map(int, input("Enter RGB values for out of bounds lines (comma-separated): ").split(',')))
+    left_color = tuple(map(int, input("Enter RGB values for left line (comma-separated): ").split(',')))
+    right_color = tuple(map(int, input("Enter RGB values for right line (comma-separated): ").split(',')))
+    safety_circle_color = tuple(map(int, input("Enter RGB values for safety circle (comma-separated): ").split(',')))
+    yard_line_color = tuple(map(int, input("Enter RGB values for 18 yard line (comma-separated): ").split(',')))
+    arc_color = tuple(map(int, input("Enter RGB values for arc (comma-separated): ").split(',')))
 
-    #out of bounds lines
-    pygame.draw.line(screen, WHITE, [0, 580], [800, 580], 5)
-    #left
-    pygame.draw.line(screen, WHITE, [0, 360], [140, 220], 5)
-    pygame.draw.line(screen, WHITE, [140, 220], [660, 220], 3)
-    #right
-    pygame.draw.line(screen, WHITE, [660, 220], [800, 360], 5)
+    # Get user input for thicknesses
+    out_of_bounds_thickness = int(input("Enter thickness for out of bounds lines: "))
+    left_thickness = int(input("Enter thickness for left line: "))
+    right_thickness = int(input("Enter thickness for right line: "))
+    safety_circle_thickness = int(input("Enter thickness for safety circle: "))
+    yard_line_thickness = int(input("Enter thickness for 18 yard line: "))
+    arc_thickness = int(input("Enter thickness for arc: "))
 
-    #safety circle
-    pygame.draw.ellipse(screen, WHITE, [240, 500, 320, 160], 5)
+    # Define lines with same colors and thicknesses
+    lines = [
+        {'start': [0, 580], 'end': [800, 580], 'color': out_of_bounds_color, 'thickness': out_of_bounds_thickness},
+        {'start': [0, 360], 'end': [140, 220], 'color': left_color, 'thickness': left_thickness},
+        {'start': [140, 220], 'end': [660, 220], 'color': left_color, 'thickness': left_thickness // 2},
+        {'start': [660, 220], 'end': [800, 360], 'color': right_color, 'thickness': right_thickness},
+        {'start': [260, 220], 'end': [180, 300], 'color': yard_line_color, 'thickness': yard_line_thickness},
+        {'start': [180, 300], 'end': [620, 300], 'color': yard_line_color, 'thickness': yard_line_thickness // 2},
+        {'start': [620, 300], 'end': [540, 220], 'color': yard_line_color, 'thickness': yard_line_thickness}
+    ]
 
-    #18 yard line goal box
-    pygame.draw.line(screen, WHITE, [260, 220], [180, 300], 5)
-    pygame.draw.line(screen, WHITE, [180, 300], [620, 300], 3)
-    pygame.draw.line(screen, WHITE, [620, 300], [540, 220], 5)
+    # Draw lines with same colors and thicknesses
+    for line in lines:
+        pygame.draw.line(screen, line['color'], line['start'], line['end'], line['thickness'])
 
-    #arc at the top of the goal box
-    pygame.draw.arc(screen, WHITE, [330, 280, 140, 40], math.pi, 2 * math.pi, 5)
+    # Draw safety circle
+    pygame.draw.ellipse(screen, safety_circle_color, [240, 500, 320, 160], safety_circle_thickness)
+
+    # Draw arc at the top of the goal box
+    pygame.draw.arc(screen, arc_color, [330, 280, 140, 40], math.pi, 2 * math.pi, arc_thickness)
+
     
     #score board pole
     pygame.draw.rect(screen, GRAY, [390, 120, 20, 70])
