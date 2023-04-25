@@ -400,3 +400,11 @@ class Soccer():
         # corner flag right
         pygame.draw.line(screen, flag_pole_color, [660, 220], [661, 190], 3)
         pygame.draw.polygon(screen, flag_color, [[663, 190], [671, 196], [668, 205], [662, 202]]) 
+
+def main():
+    """main function to initialize a soccer game and run it"""
+    soccer_game = Soccer(stars_count=1000, clouds_count=20, darkness_offset=30)
+    soccer_game.run()
+
+if __name__ == "__main__":
+    main()
