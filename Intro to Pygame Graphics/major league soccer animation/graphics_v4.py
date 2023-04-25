@@ -58,18 +58,10 @@ def draw_cloud(x, y):
 lights_on = True
 day = True
 
-stars = []
-for n in range(200):
-    x = random.randrange(0, 800)
-    y = random.randrange(0, 200)
-    r = random.randrange(1, 2)
-    stars.append([x, y, r, r])
+#simplied the star and cloud loops
+stars = [[random.randrange(0, 800), random.randrange(0, 200), random.randrange(1, 2), random.randrange(1, 2)] for n in range(200)]
+clouds = [[random.randrange(-100, 1600), random.randrange(0, 150)] for i in range(20)]
 
-clouds = []
-for i in range(20):
-    x = random.randrange(-100, 1600)
-    y = random.randrange(0, 150)
-    clouds.append([x, y])
     
 # Game loop
 done = False
