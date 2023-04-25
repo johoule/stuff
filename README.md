@@ -6,3 +6,7 @@ updated star and cloud loops:
 
 simplied draw_cloud:
   This code stores the ellipse coordinates and dimensions in a list and then iterates over the list to draw each ellipse using a loop. This reduces the number of lines of code from 5 to 2.
+
+
+Members:
+Natalia Jauregui
