@@ -26,44 +26,15 @@ Moved the cloud drawing logic from the main game loop to the draw_cloud() functi
 Removed the unused STAR_COLOR variable, as it was not used in the code.
 These modifications allow the user to control the day/night cycle and toggle the lights on/off by pressing the 'd' and 'l' keys respectively during the game loop.
 
-goal(length,height,color):
-        goal draws a goal net based on its length, height, and color
-Parameter:
-        :length: length of the rectangle shape goal net
-        :height: height of the rectangle shape goal net
-        :color: color of the goal net
+goal(length,height,color): draws a goal net based on its length, height, and color
 
-draw_line_goal_box(color):
-        draw_line_goal_box draws the line in front of the goal net based on the provided color
-Parameter:
-        :color: color of the boal box line
-
+draw_line_goal_box(color): draws the line in front of the goal net based on the provided color
 	
-draw_light(x_index):
-        draw_light draws the light of the court based on the provided x index
-Parameter:
-        :x_index: x index of the light pole bottom
+draw_light(x_index): draws the light of the court based on the provided x index
 
 
-def draw_stand(front_color,back_color):
-        draw_stand draws the left and right viewer stands based on the provided color
-Parameter:
-        :front_color: front color of the stand
-        :back_color: back color of the stand
+draw_stand(front_color,back_color): draws the left and right viewer stands based on the provided color
 
-def draw_left_flag(stick_color, flag_color, x, y):
-	draw_left_flag draws a small flag t that tilted left based on x and y index and its color
-Parameter:
-        :stick_color: stick color
-        :flag_color: flag color
-        :x: x index
-        :y: y index
+draw_left_flag(stick_color, flag_color, x, y): draws a small flag t that tilted left based on x and y index and its color
 	
- draw_right_flag(stick_color, flag_color, x, y):
-        draw_left_flag draws a small flag t that tilted right based on x and y index and its color
-Parameter:
-        :stick_color: stick color
-        :flag_color: flag color
-        :x: x index
-        :y: y index
-        
+draw_right_flag(stick_color, flag_color, x, y): draws a small flag t that tilted right based on x and y index and its color
