@@ -197,7 +197,6 @@ def netPartThree(color, width):
         endingYAxis -= 2         
 
 def netPartFour(color, width):
-
     #net part 4
     pygame.draw.line(screen, color, [324, 144], [476, 144], width)
     pygame.draw.line(screen, color, [324, 148], [476, 148], width)
@@ -214,11 +213,21 @@ def netPartFour(color, width):
     pygame.draw.line(screen, color, [335, 192], [465, 192], width)
     pygame.draw.line(screen, color, [335, 196], [465, 196], width)
 
+def goalPostBars(color):
+    #draw bars for goal post
+    pygame.draw.rect(screen, color, [320, 140, 160, 80], 5)
+    pygame.draw.line(screen, color, [340, 200], [460, 200], 3)
+    pygame.draw.line(screen, color, [320, 220], [340, 200], 3)
+    pygame.draw.line(screen, color, [480, 220], [460, 200], 3)
+    pygame.draw.line(screen, color, [320, 140], [340, 200], 3)
+    pygame.draw.line(screen, color, [480, 140], [460, 200], 3)
+
 def drawGoalPost(color, width):
     netPartOne(color,width)
     netPartTwo(color, width)
     netPartThree(color,width)
     netPartFour(color, width)
+    goalPostBars(color)
 
 def drawStands (upperStandColor, lowerStandColor):
     #stands right
@@ -366,15 +375,7 @@ while not done:
 
     #score board
     pygame.draw.rect(screen, BLACK, [300, 40, 200, 90])
-    pygame.draw.rect(screen, WHITE, [302, 42, 198, 88], 2)
-
-    #goal
-    pygame.draw.rect(screen, WHITE, [320, 140, 160, 80], 5)
-    pygame.draw.line(screen, WHITE, [340, 200], [460, 200], 3)
-    pygame.draw.line(screen, WHITE, [320, 220], [340, 200], 3)
-    pygame.draw.line(screen, WHITE, [480, 220], [460, 200], 3)
-    pygame.draw.line(screen, WHITE, [320, 140], [340, 200], 3)
-    pygame.draw.line(screen, WHITE, [480, 140], [460, 200], 3)
+    pygame.draw.rect(screen, WHITE, [301, 41, 198, 88], 2)
 
 
     #light pole and lights 1
@@ -383,8 +384,9 @@ while not done:
     #light pole and lights 2
     stadium_light(GRAY,[630, 60, 20, 140], light_color, 590,690)
 
-    #Function to draw the goal post with parameters Colour and width
+    #Function to draw the goal post with parameters Colour and width for net lines
     drawGoalPost(WHITE,1)
+
     drawStands(WHITE, RED)
 
 
